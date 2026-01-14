@@ -2,6 +2,8 @@ import br.com.dio.desafio.dominio.Bootcamp;
 import br.com.dio.desafio.dominio.Curso;
 import br.com.dio.desafio.dominio.Dev;
 import br.com.dio.desafio.dominio.Mentoria;
+import br.com.dio.desafio.dominio.Nivel;
+import br.com.dio.desafio.dominio.Certificado;
 
 import java.time.LocalDate;
 
@@ -11,11 +13,13 @@ public class Main {
         curso1.setTitulo("curso java");
         curso1.setDescricao("descrição curso java");
         curso1.setCargaHoraria(8);
+        curso1.setNivel(Nivel.BASICO);
 
         Curso curso2 = new Curso();
         curso2.setTitulo("curso js");
         curso2.setDescricao("descrição curso js");
         curso2.setCargaHoraria(4);
+        curso2.setNivel(Nivel.AVANCADO);
 
         Mentoria mentoria = new Mentoria();
         mentoria.setTitulo("mentoria de java");
@@ -33,16 +37,23 @@ public class Main {
         bootcamp.getConteudos().add(curso2);
         bootcamp.getConteudos().add(mentoria);
 
-        Dev devCamila = new Dev();
-        devCamila.setNome("Camila");
-        devCamila.inscreverBootcamp(bootcamp);
-        System.out.println("Conteúdos Inscritos Camila:" + devCamila.getConteudosInscritos());
-        devCamila.progredir();
-        devCamila.progredir();
+        Dev devYan = new Dev();
+        devYan.setNome("Yan");
+        devYan.inscreverBootcamp(bootcamp);
+        System.out.println("Conteúdos Inscritos Yan:" + devYan.getConteudosInscritos());
+        devYan.progredir();
+        devYan.progredir();
         System.out.println("-");
-        System.out.println("Conteúdos Inscritos Camila:" + devCamila.getConteudosInscritos());
-        System.out.println("Conteúdos Concluídos Camila:" + devCamila.getConteudosConcluidos());
-        System.out.println("XP:" + devCamila.calcularTotalXp());
+        System.out.println("Conteúdos Inscritos Yan:" + devYan.getConteudosInscritos());
+        System.out.println("Conteúdos Concluídos Yan:" + devYan.getConteudosConcluidos());
+        System.out.println("XP:" + devYan.calcularTotalXp());
+
+        String certYan = Certificado.gerar(devYan, bootcamp);
+        if (certYan != null) {
+            System.out.println(certYan);
+        } else {
+            System.out.println("Bootcamp ainda não concluído por Yan.");
+        }
 
         System.out.println("-------");
 
@@ -57,6 +68,13 @@ public class Main {
         System.out.println("Conteúdos Inscritos João:" + devJoao.getConteudosInscritos());
         System.out.println("Conteúdos Concluidos João:" + devJoao.getConteudosConcluidos());
         System.out.println("XP:" + devJoao.calcularTotalXp());
+
+        String certJoao = Certificado.gerar(devJoao, bootcamp);
+        if (certJoao != null) {
+            System.out.println(certJoao);
+        } else {
+            System.out.println("Bootcamp ainda não concluído por Joao.");
+        }
 
     }
 
